@@ -264,20 +264,24 @@ int Scanner::scan(string &input, Token &tk)
 					is_commenting = !is_commenting;
 
 				if(is_commenting) {
+				current_scanner_pointer --;
+				current_scanner_pointer --;
 	                        ostringstream temp;
         	                temp << current_line_number << ":" << current_scanner_pointer;
-                	        
-				if (temp.str() == "$$")
-				last_comment_position = temp.str();
+                	  	last_comment_position = temp.str();      
+		//		if (last_comment_position  == "$$")
+		//	{	last_comment_position = temp.str(); }
 				is_commenting = false;
-               			 }
-	
+			//	last_comment_position = temp.str();
+               				return SCANNER_DELIMITER;
+
+				 }	
 
 					return SCANNER_DELIMITER;
 					}
 					else {
 
-						tk.value.assign(" " + read_value); 
+						tk.value.assign("  " + read_value); 
 					
 
 					}	
